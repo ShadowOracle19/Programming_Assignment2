@@ -3,15 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Wheat
+  - CropCrate
+  - Farmer
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Wheat
   - Water
   - UI
-  - 
+  - Farmer
   - 
   - 
   - 
