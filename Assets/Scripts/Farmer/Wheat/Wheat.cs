@@ -30,6 +30,12 @@ public class Wheat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isCursed)
+        {
+            wheatImage1.color = Color.grey;
+            wheatImage2.color = Color.grey;
+            return;
+        }
         if(needsToBePlanted)
         {
             wheatImage1.sprite = wheatGrowthEmpty;
@@ -73,7 +79,10 @@ public class Wheat : MonoBehaviour
 
     public void PlantCrop()
     {
+        wheatImage1.color = Color.white;
+        wheatImage2.color = Color.white;
         needsToBePlanted = false;
+        isCursed = false;
 
         currentGrowthLevel = 0;
         growthTime = maxGrowthTime;

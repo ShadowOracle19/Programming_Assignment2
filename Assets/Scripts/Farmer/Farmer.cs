@@ -15,6 +15,7 @@ public class Farmer : MonoBehaviour
 
     public bool foundGrownCrop = false;
     public bool foundEmptyCrop = false;
+    public bool foundCursedCrop = false;
     public bool inventoryFull = false;
 
     // Start is called before the first frame update

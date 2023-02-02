@@ -37,11 +37,6 @@ namespace NodeCanvas.Tasks.Actions{
 			
 			foreach (Collider hit in hits)
 			{
-				if(hit.gameObject.CompareTag("CropCrate"))
-				{
-					farmer.nearestCrate = hit.gameObject.GetComponent<Crate>();
-				}
-
 				if (hit.gameObject.CompareTag("Wheat"))
 				{
 					farmer.cropFound = hit.gameObject.GetComponent<Wheat>();
@@ -59,8 +54,13 @@ namespace NodeCanvas.Tasks.Actions{
 						EndAction(true);
 						break;
 					}
-					
-					
+
+					if (farmer.cropFound.isCursed)
+					{
+						farmer.foundCursedCrop = true;
+						EndAction(true);
+						break;
+					}
 				}
 			}
 
