@@ -6,7 +6,6 @@ namespace NodeCanvas.Tasks.Actions{
 
 	public class AT_FarmerIdle : ActionTask{
 		public Farmer farmer;
-		public float detectionRadius = 10;
 
 		//public RaycastHit[] hits;
 
