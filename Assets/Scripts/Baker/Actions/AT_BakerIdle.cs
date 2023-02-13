@@ -22,7 +22,15 @@ namespace NodeCanvas.Tasks.Actions{
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate(){
-			Collider[] hits = Physics.OverlapSphere(baker.gameObject.transform.position, Mathf.Infinity);
+
+            if (baker.cropAvailable <= 0)
+            {
+                baker.needCrops = true;
+                EndAction(true);
+                return;
+            }
+
+            Collider[] hits = Physics.OverlapSphere(baker.gameObject.transform.position, Mathf.Infinity);
 
 
 		}
