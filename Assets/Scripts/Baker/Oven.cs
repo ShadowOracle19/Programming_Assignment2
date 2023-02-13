@@ -8,16 +8,21 @@ public class Oven : MonoBehaviour
     public int numberOfCropsNeededForBread = 3;
     public int breadHeld = 0;
 
-    public SpriteRenderer circleTimer;
+    public GameObject circleTimer;
 
     public float totalBakingTime = 360;
     public float timeRemaining = 360;
     public bool bakingInProgress = false;
 
+    public Material ovenOff;
+    public Material ovenOn;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        circleTimer.SetActive(false);
+        GetComponent<MeshRenderer>().material = ovenOff;
     }
 
     // Update is called once per frame
@@ -27,14 +32,21 @@ public class Oven : MonoBehaviour
         {
             if(timeRemaining > 0)
             {
-                timeRemaining -= Time.deltaTime;
+                circleTimer.SetActive(true);
+                timeRemaining -= Time.deltaTime * 30;
+                circleTimer.GetComponent<Renderer>().sharedMaterial.SetFloat("_Arc2", timeRemaining);
+                GetComponent<MeshRenderer>().material = ovenOn;
                 bakingInProgress = true;
             }
             else
             {
+                GetComponent<MeshRenderer>().material = ovenOff;
+                circleTimer.SetActive(false);
                 bakingInProgress = false;
                 cropsHeld -= numberOfCropsNeededForBread;
+                breadHeld += 1;
                 timeRemaining = totalBakingTime;
+                circleTimer.GetComponent<Renderer>().sharedMaterial.SetFloat("_Arc2", timeRemaining);
             }
         }
     }

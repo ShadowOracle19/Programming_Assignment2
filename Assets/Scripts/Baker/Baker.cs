@@ -8,12 +8,15 @@ public class Baker : MonoBehaviour
     public NavMeshAgent agent;
 
     public int cropAvailable = 0;
-    public int numberOfCropNeedForBread = 2;
-    public int breadMade = 0;
+    public int breadHeld = 0;
 
     public bool needCrops = false;
+    public bool cropIsAvailable = false;
+    public bool depositCropInOven = false;
 
     public Crate cropCrate;
+
+    public Oven nearestOven;
 
     // Start is called before the first frame update
     void Start()

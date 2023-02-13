@@ -735,6 +735,90 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &488792610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 488792612}
+  - component: {fileID: 488792611}
+  m_Layer: 0
+  m_Name: Circle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!212 &488792611
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488792610}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: c486a00345781bd4ba0f85483bd45dbe, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &488792612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488792610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1584990287}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &594701627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,10 +1341,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 1033172103}
   cropAvailable: 0
-  numberOfCropNeedForBread: 3
-  breadMade: 0
+  breadHeld: 0
   needCrops: 0
+  cropIsAvailable: 0
+  depositCropInOven: 0
   cropCrate: {fileID: 1933996607}
+  nearestOven: {fileID: 0}
 --- !u!195 &1033172103
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1314,10 +1400,10 @@ MonoBehaviour:
   _serializedExposedParameters: []
   _boundGraphSerialization: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"executionMode":1,"actions":[{"baker":1,"$type":"NodeCanvas.Tasks.Actions.AT_BakerIdle"}]},"_name":"Baker
     Idle","_position":{"x":593.8678,"y":348.981},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_actionList":{"executionMode":1,"actions":[{"baker":1,"$type":"NodeCanvas.Tasks.Actions.AT_CollectCrop"}]},"_name":"Baker
-    Collect Crop","_position":{"x":747.0,"y":220.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"1"},{"_actionList":{"executionMode":1,"actions":[]},"_name":"Bake
-    Bread","_position":{"x":766.0,"y":453.0},"$type":"NodeCanvas.StateMachines.ActionState"},{"_actionList":{"executionMode":1,"actions":[]},"_name":"Sell
+    Collect Crop","_position":{"x":747.0,"y":220.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"1"},{"_actionList":{"executionMode":1,"actions":[{"baker":1,"$type":"NodeCanvas.Tasks.Actions.AT_BakeBread"}]},"_name":"Bake
+    Bread","_position":{"x":766.0,"y":453.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"2"},{"_actionList":{"executionMode":1,"actions":[]},"_name":"Sell
     Bread","_position":{"x":435.0,"y":458.0},"$type":"NodeCanvas.StateMachines.ActionState"},{"_actionList":{"executionMode":1,"actions":[]},"_name":"Deliver
-    Bread","_position":{"x":426.0,"y":216.0},"$type":"NodeCanvas.StateMachines.ActionState"}],"connections":[{"_condition":{"baker":1,"$type":"NodeCanvas.Tasks.Conditions.AC_NeedCrops"},"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"0"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}}}'
+    Bread","_position":{"x":426.0,"y":216.0},"$type":"NodeCanvas.StateMachines.ActionState"}],"connections":[{"_condition":{"baker":1,"$type":"NodeCanvas.Tasks.Conditions.AC_NeedCrops"},"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"baker":1,"$type":"NodeCanvas.Tasks.Conditions.AC_DepositCrop"},"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"0"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"0"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}}}'
   _boundGraphObjectReferences:
   - {fileID: 0}
   - {fileID: 1033172102}
@@ -1724,10 +1810,10 @@ GameObject:
   - component: {fileID: 1584990288}
   m_Layer: 0
   m_Name: Oven
-  m_TagString: Untagged
+  m_TagString: Oven
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!65 &1584990284
 BoxCollider:
@@ -1800,10 +1886,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584990283}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.14, y: 0.497, z: -26.25}
+  m_LocalPosition: {x: -2.1, y: 0.497, z: -19.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 488792612}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1821,6 +1908,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cropsHeld: 0
   numberOfCropsNeededForBread: 3
+  breadHeld: 0
+  circleTimer: {fileID: 488792610}
+  totalBakingTime: 360
+  timeRemaining: 360
+  bakingInProgress: 0
+  ovenOff: {fileID: 2100000, guid: afdf2b3d07ed085439ad6e9e81858f48, type: 2}
+  ovenOn: {fileID: 2100000, guid: 207d0ba20cbe6c2469fc4662fe43cdfb, type: 2}
 --- !u!1001 &1821152866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2701,7 +2795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8769934062998113780, guid: 0fe1db2e40da309488d89059334d6370, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.5200005
+      value: -1.16
       objectReference: {fileID: 0}
     - target: {fileID: 8769934062998113780, guid: 0fe1db2e40da309488d89059334d6370, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2709,7 +2803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8769934062998113780, guid: 0fe1db2e40da309488d89059334d6370, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -9.68
       objectReference: {fileID: 0}
     - target: {fileID: 8769934062998113780, guid: 0fe1db2e40da309488d89059334d6370, type: 3}
       propertyPath: m_LocalRotation.w

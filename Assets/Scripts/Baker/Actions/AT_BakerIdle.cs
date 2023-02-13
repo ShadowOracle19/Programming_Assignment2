@@ -23,7 +23,7 @@ namespace NodeCanvas.Tasks.Actions{
 		//Called once per frame while the action is active.
 		protected override void OnUpdate(){
 
-            if (baker.cropAvailable <= 0)
+            if (baker.cropAvailable <= 0 && baker.cropCrate.cropTotal > 0)
             {
                 baker.needCrops = true;
                 EndAction(true);
@@ -32,8 +32,23 @@ namespace NodeCanvas.Tasks.Actions{
 
             Collider[] hits = Physics.OverlapSphere(baker.gameObject.transform.position, Mathf.Infinity);
 
+            foreach (Collider hit in hits)
+            {
+                if (hit.gameObject.CompareTag("Oven"))
+                {
+                    baker.nearestOven = hit.gameObject.GetComponent<Oven>();
 
-		}
+
+                    if (baker.nearestOven.cropsHeld <= baker.nearestOven.numberOfCropsNeededForBread && baker.cropAvailable > 0)
+                    {
+                        baker.depositCropInOven = true;
+                        EndAction(true);
+                        break;
+                    }
+                }
+            }
+
+        }
 
 		//Called when the task is disabled.
 		protected override void OnStop(){
