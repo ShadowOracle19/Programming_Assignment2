@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   numberOfCropsHeld: 0
-  maxCropsHeld: 3
+  maxCropsHeld: 5
   cropFound: {fileID: 0}
   nearestCrate: {fileID: 0}
   foundGrownCrop: 0

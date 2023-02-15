@@ -34,6 +34,12 @@ public class RaycastClick : MonoBehaviour
                     hit.collider.GetComponent<Wheat>().isCursed = true;
                     curseOnCooldown = true;
                 }
+                if(hit.collider.tag == "Baker")
+                {
+                    if (hit.collider.GetComponent<Baker>().sellBread) return;
+
+                    hit.collider.GetComponent<Baker>().sellBread = true;
+                }
             }
         }
 
