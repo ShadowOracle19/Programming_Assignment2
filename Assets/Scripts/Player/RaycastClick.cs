@@ -40,6 +40,12 @@ public class RaycastClick : MonoBehaviour
 
                     hit.collider.GetComponent<Baker>().sellBread = true;
                 }
+                if(hit.collider.tag == "Guard")
+                {
+                    hit.collider.GetComponent<Guard>().health -= 2;
+                    hit.collider.GetComponent<Guard>().audioSource.Play();
+                    
+                }
             }
         }
 

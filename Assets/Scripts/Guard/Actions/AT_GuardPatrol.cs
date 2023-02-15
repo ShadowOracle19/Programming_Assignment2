@@ -43,8 +43,22 @@ namespace NodeCanvas.Tasks.Actions{
 
         //Called once per frame while the action is active.
         protected override void OnUpdate(){
-			
-		}
+            if (!guard.agent.pathPending && guard.agent.remainingDistance < 0.5f)
+                GotoNextPoint();
+
+            if (guard.needToHeal)
+            {
+                EndAction(true);
+            }
+            if (guard.isInvestigating)
+			{
+				EndAction(true);
+			}
+			if(guard.dead)
+			{
+				EndAction(true);
+			}
+        }
 
 		//Called when the task is disabled.
 		protected override void OnStop(){

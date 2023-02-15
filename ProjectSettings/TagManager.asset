@@ -9,6 +9,7 @@ TagManager:
   - Farmer
   - Oven
   - Baker
+  - Guard
   layers:
   - Default
   - TransparentFX

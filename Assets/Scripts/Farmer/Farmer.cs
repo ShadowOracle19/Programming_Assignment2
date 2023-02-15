@@ -12,6 +12,7 @@ public class Farmer : MonoBehaviour
 
     public Wheat cropFound = null;
     public Crate nearestCrate = null;
+    public Guard nearestGuard = null;
 
     public bool foundGrownCrop = false;
     public bool foundEmptyCrop = false;

@@ -61,6 +61,10 @@ namespace NodeCanvas.Tasks.Actions{
 						break;
 					}
 				}
+				if(hit.gameObject.CompareTag("Guard"))
+				{
+					farmer.nearestGuard = hit.gameObject.GetComponent<Guard>();
+				}
 			}
 
 		}
